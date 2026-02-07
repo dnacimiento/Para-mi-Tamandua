@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un detalle para ti</title>
+    <style>
+        body { background-color: #ffe0e0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Arial', sans-serif; overflow: hidden; }
+        .container { text-align: center; cursor: pointer; }
+        .gift-box { position: relative; width: 150px; height: 150px; background-color: #ff4d4d; margin: 0 auto; transition: transform 0.5s; border-radius: 5px; }
+        .gift-box::before { content: ''; position: absolute; width: 20px; height: 100%; background-color: #ffcc00; left: 50%; transform: translateX(-50%); }
+        .gift-box::after { content: ''; position: absolute; height: 20px; width: 100%; background-color: #ffcc00; top: 50%; transform: translateY(-50%); }
+        .lid { position: absolute; width: 170px; height: 40px; background-color: #ff4d4d; top: -20px; left: -10px; z-index: 1; transition: transform 0.8s ease-in-out; border-bottom: 2px solid rgba(0,0,0,0.1); border-radius: 5px; }
+        .message { position: absolute; top: 50px; left: 50%; transform: translateX(-50%); opacity: 0; transition: all 1s; font-size: 1.5rem; color: #d63031; width: 280px; font-weight: bold; line-height: 1.4; }
+        
+        /* Animación al abrir */
+        .open .lid { transform: translateY(-120px) rotate(-15deg); opacity: 0; }
+        .open .message { opacity: 1; transform: translateX(-50%) translateY(-180px); }
+        .open .gift-box { transform: scale(0.9); }
+        .heart { position: fixed; font-size: 20px; color: #ff4d4d; user-select: none; pointer-events: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container" onclick="openGift()">
+        <div class="message" id="text">¡Eres la persona más especial del mundo! ❤️<br><br>Te quiero muchísimo.</div>
+        <div class="gift-box" id="box">
+            <div class="lid"></div>
+        </div>
+        <h2 id="instruction" style="color: #ff4d4d; margin-top: 50px; font-weight: normal;">Toca el regalo...</h2>
+    </div>
+
+    <script>
+        function openGift() {
+            document.querySelector('.container').classList.add('open');
+            document.getElementById('instruction').style.opacity = '0';
+            setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+            
+            let pos = 0;
+            const interval = setInterval(() => {
+                if (pos >= 100) {
+                    clearInterval(interval);
+                    heart.remove();
+                } else {
+                    pos++;
+                    heart.style.top = (100 - pos) + 'vh';
+                }
+            }, 20);
+        }
+    </script>
+</body>
+</html>
