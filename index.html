@@ -6,8 +6,8 @@
     <title>Para mi Tamandúa ❤️</title>
     <style>
         body {
-            background-color: #ffe6f2; /* Fondo rosado claro */
-            font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Fuente juguetona */
+            background-color: #ffe6f2;
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -17,17 +17,26 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* Estilo para la imagen del Tamandúa */
+        /* --- ANIMACIÓN DE CAMINATA --- */
+        @keyframes walkIn {
+            0% { transform: translateX(-120%) rotate(-5deg); }
+            25% { transform: translateX(-60%) rotate(5deg); }
+            50% { transform: translateX(-30%) rotate(-5deg); }
+            75% { transform: translateX(-10%) rotate(5deg); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+
         .tamandua-img {
             max-width: 80%;
             height: auto;
             margin-bottom: 20px;
+            animation: walkIn 2.5s ease-out forwards;
         }
 
-        /* Contenedor del Cartel (Bocadillo) */
+        /* --- ESTILOS GENERALES --- */
         .sign-container {
             background-color: #fff;
             border: 3px solid #ff6b81;
@@ -40,7 +49,6 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Triángulo del bocadillo */
         .sign-container::after {
             content: '';
             position: absolute;
@@ -56,18 +64,17 @@
 
         h1 { color: #d63031; font-size: 1.1rem; margin: 0; line-height: 1.4; }
 
-        /* Contenedor de los botones */
         .btn-container {
             margin-top: 20px;
             position: relative;
             width: 100%;
-            height: 150px; /* Espacio para que el botón se mueva */
+            height: 100px;
             display: flex;
             justify-content: center;
+            align-items: flex-start;
             gap: 20px;
         }
 
-        /* Estilo de los botones */
         button {
             padding: 15px 40px;
             font-size: 1.2rem;
@@ -78,29 +85,28 @@
             font-weight: bold;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             color: white;
-            z-index: 10; /* Asegura que los botones estén al frente */
+            z-index: 10;
         }
 
         button:active { transform: scale(0.95); }
 
-        #siBtn { background-color: #ff6b81; } /* Color rosado */
+        #siBtn { background-color: #ff6b81; }
         #siBtn:hover { background-color: #ff4757; }
 
         #noBtn {
-            background-color: #a4b0be; /* Color grisáceo */
-            position: absolute; /* Para que pueda moverse libremente */
+            background-color: #a4b0be;
+            position: relative; 
         }
         #noBtn:hover { background-color: #747d8c; }
 
-        /* Pantalla 2 (Oculta al principio) */
         #screen2 {
             display: none;
             flex-direction: column;
             align-items: center;
+            width: 100%;
             animation: fadeIn 1s ease-in;
         }
 
-        /* Estilo del mensaje de amor */
         .love-msg {
             color: #d63031;
             font-size: 1.1rem;
@@ -111,15 +117,58 @@
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border: 3px solid #ffcccb;
+            margin-bottom: 20px;
         }
 
-        .love-msg h2 {
-            margin-top: 0;
-            color: #ff4757;
-            font-size: 1.5rem;
+        .love-msg h2 { margin-top: 0; color: #ff4757; font-size: 1.5rem; }
+
+        /* --- ESTILOS PREMIOS --- */
+        .prize-section { margin-top: 20px; width: 100%; }
+        
+        .prizes-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 15px;
         }
 
-        /* Animaciones */
+        .prize-item {
+            cursor: pointer;
+            transition: transform 0.3s;
+            background: white;
+            padding: 10px;
+            border-radius: 15px;
+            border: 2px solid #ffe6f2;
+        }
+
+        .prize-item:hover { transform: scale(1.1); border-color: #ff6b81; }
+
+        .prize-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .prize-label {
+            display: block;
+            margin-top: 5px;
+            color: #d63031;
+            font-weight: bold;
+        }
+
+        /* --- CONTENEDOR DEL CÓDIGO FINAL --- */
+        #final-code-container {
+            display: none; /* Oculto al principio */
+            margin-top: 20px;
+            background-color: #fff0f3;
+            border: 2px dashed #ff6b81;
+            padding: 15px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -138,6 +187,7 @@
             background-color: #f00;
             animation: fall linear forwards;
             opacity: 0.8;
+            z-index: 100;
         }
 
         @keyframes fall {
@@ -152,7 +202,7 @@
             <h1>Hola amor, espero que te guste este detalle ❤️<br>¿Quieres ver lo que tengo para ti?</h1>
         </div>
 
-        <img src="tamandua.png" alt="Tamandúa tierno" class="tamandua-img">
+        <img src="tamandua.png" alt="Tamandúa caminando" class="tamandua-img">
 
         <div class="btn-container">
             <button id="siBtn" onclick="nextScreen()">¡SÍ, QUIERO VER! 😍</button>
@@ -161,49 +211,74 @@
     </div>
 
     <div id="screen2">
-        <img src="tamandua.png" alt="Tamandúa celebrando" class="tamandua-img" style="transform: scale(1.1);">
+        <img src="tamandua.png" alt="Tamandúa celebrando" class="tamandua-img" style="max-width: 150px; animation: none;">
         
         <div class="love-msg">
             <h2>¡Sabía que elegirías la mejor opción! 💖</h2>
             <p>Te amo muchísimo mi Tamandúa.</p>
-            <p>No te voy a dejar tan fácil, eres una mujer increíble y vales oro.</p>
-            <p><b>Sigo pensando en ti a cada momento, aunque no pueda escribirte o llamarte.</b></p>
-            <p>Este pequeño detalle es para recordarte lo especial que eres para mí.</p>
-            <p style="font-size: 2rem; margin-bottom: 0; margin-top: 15px;">🐜💐❤️</p>
+            <p>Eres una mujer increíble y vales oro. Sigo pensando en ti a cada momento.</p>
+            
+            <div id="prizes-box">
+                <p style="margin-top: 15px;"><b>¡Y POR SER LA MEJOR, TE GANASTE UN PREMIO! 🎁</b></p>
+                <p>Elige tu favorito:</p>
+
+                <div class="prizes-container">
+                    <div class="prize-item" onclick="selectPrize('Pie de Limón')">
+                        <img src="https://media.giphy.com/media/3o6Zt7qChPzoY8yFyg/giphy.gif" alt="Pie de Limón" class="prize-img">
+                        <span class="prize-label">Pie de Limón</span>
+                    </div>
+
+                    <div class="prize-item" onclick="selectPrize('Torta de Chocolate')">
+                        <img src="https://media.giphy.com/media/LpDmM2wSt6Hm5fKJVa/giphy.gif" alt="Torta de Chocolate" class="prize-img">
+                        <span class="prize-label">Torta de Choco</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="final-code-container">
+                <h3 style="color: #ff4757; margin: 0 0 10px 0;">¡Qué ricooo! 🤤</h3>
+                <p style="margin: 5px 0;">Has elegido: <b id="chosen-prize"></b></p>
+                <p>Ahora solo envíale el siguiente código:</p>
+                
+                <h2 style="font-size: 1.8rem; margin: 10px 0; color: #d63031;">ANTOJO 01</h2>
+                <p style="margin-bottom: 15px;">al número <b>960752405</b></p>
+            </div>
+
         </div>
     </div>
 
     <script>
-        // Función para mover el botón "NO"
         function moveButton() {
             const btn = document.getElementById('noBtn');
-            const container = document.querySelector('.btn-container');
-            
-            // Calcular nuevas posiciones dentro del área visible
-            const maxX = window.innerWidth - btn.offsetWidth - 40; // Dejar margen
-            const maxY = window.innerHeight - btn.offsetHeight - 40;
-
-            // Asegurarse de que no se salga de la pantalla por arriba o izquierda
-            const newX = Math.max(20, Math.random() * maxX);
-            const newY = Math.max(20, Math.random() * maxY);
-
-            // Aplicar la nueva posición de forma fija en la pantalla
+            const maxX = window.innerWidth - btn.offsetWidth - 20;
+            const maxY = window.innerHeight - btn.offsetHeight - 20;
+            const newX = Math.max(10, Math.random() * maxX);
+            const newY = Math.max(10, Math.random() * maxY);
             btn.style.position = 'fixed';
             btn.style.left = newX + 'px';
             btn.style.top = newY + 'px';
         }
 
-        // Función para pasar a la siguiente pantalla
         function nextScreen() {
             document.getElementById('screen1').style.display = 'none';
             document.getElementById('screen2').style.display = 'flex';
-            
-            // Cambiar el color de fondo y lanzar confeti
             document.body.style.backgroundColor = "#ffdde1";
             launchConfetti();
         }
 
-        // Función para lanzar confeti
+        function selectPrize(prizeName) {
+            // Ocultar la selección de premios
+            document.getElementById('prizes-box').style.display = 'none';
+            
+            // Mostrar el contenedor del código
+            const codeContainer = document.getElementById('final-code-container');
+            document.getElementById('chosen-prize').innerText = prizeName;
+            codeContainer.style.display = 'block';
+
+            // Lanzar más confeti
+            launchConfetti();
+        }
+
         function launchConfetti() {
             const colors = ['#ff6b81', '#ff4757', '#ffa502', '#2ed573', '#1e90ff'];
             for (let i = 0; i < 100; i++) {
