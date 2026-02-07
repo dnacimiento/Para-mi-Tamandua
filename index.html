@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Tamandúa ❤️</title>
+    <title>Un Detalle Especial ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #ffe6f2; /* Fondo rosado claro */
-            font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Fuente juguetona */
+            /* Fondo degradado suave y elegante */
+            background: linear-gradient(to bottom, #FFF3F1, #ffe6e9);
+            font-family: 'Cormorant Garamond', serif; /* Fuente principal elegante */
+            color: #5e3023; /* Color de texto marrón oscuro elegante */
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -22,154 +25,152 @@
 
         /* Estilo para la imagen del Tamandúa */
         .tamandua-img {
-            max-width: 80%;
+            max-width: 75%;
             height: auto;
-            margin-bottom: 20px;
+            /* Marco elegante tipo fotografía antigua */
+            border: 4px solid #f8f1e5;
+            outline: 2px solid #d4af37; /* Borde dorado fino */
+            box-shadow: 0 15px 35px rgba(94, 48, 35, 0.2);
+            margin-bottom: 30px;
+            border-radius: 5px;
         }
 
-        /* Contenedor del Cartel (Bocadillo) */
-        .sign-container {
-            background-color: #fff;
-            border: 3px solid #ff6b81;
-            border-radius: 20px;
-            padding: 20px;
-            max-width: 300px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        /* Títulos elegantes */
+        h1, h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: #8b0000; /* Rojo vino profundo */
+            line-height: 1.3;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Contenedor del Cartel/Mensaje (Estilo tarjeta elegante) */
+        .elegant-card {
+            background-color: #fffcf8; /* Color crema */
+            border: 2px solid #d4af37; /* Borde dorado */
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(94, 48, 35, 0.15);
             position: relative;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
+            margin-bottom: 25px;
         }
 
-        /* Triángulo del bocadillo */
-        .sign-container::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 15px 15px 0;
-            border-style: solid;
-            border-color: #ff6b81 transparent;
-            display: block;
-            width: 0;
+        /* Animación suave para la tarjeta inicial */
+        .floating {
+            animation: float 4s ease-in-out infinite;
         }
-
-        h1 { color: #d63031; font-size: 1.1rem; margin: 0; line-height: 1.4; }
-
+        
         /* Contenedor de los botones */
         .btn-container {
-            margin-top: 20px;
+            margin-top: 30px;
             position: relative;
             width: 100%;
-            height: 150px; /* Espacio para que el botón se mueva */
+            height: 150px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
         }
 
-        /* Estilo de los botones */
+        /* Estilo de los botones elegantes */
         button {
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 50px;
+            padding: 15px 45px;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.1rem;
+            border: 1px solid #d4af37; /* Borde dorado */
+            border-radius: 4px; /* Bordes menos redondeados, más serios */
             cursor: pointer;
-            transition: transform 0.1s, background-color 0.2s;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
             color: white;
-            z-index: 10; /* Asegura que los botones estén al frente */
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
+            letter-spacing: 1px;
         }
 
-        button:active { transform: scale(0.95); }
-
-        #siBtn { background-color: #ff6b81; } /* Color rosado */
-        #siBtn:hover { background-color: #ff4757; }
+        #siBtn {
+            /* Degradado dorado/rojizo elegante */
+            background: linear-gradient(to right, #d4af37, #b48811);
+        }
+        #siBtn:hover {
+            background: linear-gradient(to right, #b48811, #8b0000);
+            transform: translateY(-2px);
+        }
 
         #noBtn {
-            background-color: #a4b0be; /* Color grisáceo */
-            position: absolute; /* Para que pueda moverse libremente */
+            background-color: #a8a8a8; /* Gris elegante */
+            border-color: #8c8c8c;
+            position: absolute;
+            z-index: 10;
         }
-        #noBtn:hover { background-color: #747d8c; }
 
         /* Pantalla 2 (Oculta al principio) */
         #screen2 {
             display: none;
             flex-direction: column;
             align-items: center;
-            animation: fadeIn 1s ease-in;
+            animation: fadeInSlow 1.5s ease-in;
         }
 
-        /* Estilo del mensaje de amor */
-        .love-msg {
-            color: #d63031;
-            font-size: 1.1rem;
-            max-width: 500px;
-            line-height: 1.6;
-            background: rgba(255,255,255,0.9);
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 3px solid #ffcccb;
+        /* Estilo del mensaje de amor final */
+        .love-msg-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
         }
-
-        .love-msg h2 {
-            margin-top: 0;
-            color: #ff4757;
-            font-size: 1.5rem;
+        
+        .signature {
+             font-family: 'Cinzel Decorative', cursive;
+             font-size: 2.5rem;
+             color: #d4af37; /* Corazón dorado */
+             margin-top: 30px;
         }
 
         /* Animaciones */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
             100% { transform: translateY(0px); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeInSlow {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Confeti elegante */
         .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #f00;
+            width: 8px;
+            height: 8px;
+            opacity: 0.7;
             animation: fall linear forwards;
-            opacity: 0.8;
         }
-
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(360deg); }
-        }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
     </style>
 </head>
 <body>
 
     <div id="screen1">
-        <div class="sign-container">
-            <h1>Hola amor, espero que te guste este detalle ❤️<br>¿Quieres ver lo que tengo para ti?</h1>
+        <div class="elegant-card floating">
+            <h1>Mi amor, he preparado este pequeño detalle para ti. ❤️<br>¿Deseas verlo?</h1>
         </div>
 
         <img src="tamandua.png" alt="Tamandúa tierno" class="tamandua-img">
 
         <div class="btn-container">
-            <button id="siBtn" onclick="nextScreen()">¡SÍ, QUIERO VER! 😍</button>
-            <button id="noBtn" onmouseover="moveButton()" ontouchstart="moveButton()">NO 🙈</button>
+            <button id="siBtn" onclick="nextScreen()">Sí, deseo verlo</button>
+            <button id="noBtn" onmouseover="moveButton()" ontouchstart="moveButton()">No</button>
         </div>
     </div>
 
     <div id="screen2">
-        <img src="tamandua.png" alt="Tamandúa celebrando" class="tamandua-img" style="transform: scale(1.1);">
+        <img src="tamandua.png" alt="Tamandúa celebrando" class="tamandua-img">
         
-        <div class="love-msg">
-            <h2>¡Sabía que elegirías la mejor opción! 💖</h2>
-            <p>Te amo muchísimo mi Tamandúa.</p>
-            <p>No te voy a dejar tan fácil, eres una mujer increíble y vales oro.</p>
-            <p><b>Sigo pensando en ti a cada momento, aunque no pueda escribirte o llamarte.</b></p>
-            <p>Este pequeño detalle es para recordarte lo especial que eres para mí.</p>
-            <p style="font-size: 2rem; margin-bottom: 0; margin-top: 15px;">🐜💐❤️</p>
+        <div class="elegant-card love-msg-content">
+            <h2>Sabía que dirías que sí... 💖</h2>
+            <p>Te amo profundamente, mi Tamandúa.</p>
+            <p>Eres una mujer increíble y vales oro. No pienso dejarte ir fácilmente.</p>
+            <p style="font-weight: bold; color: #8b0000;">Sigo pensando en ti a cada momento, aunque no pueda escribirte o llamarte.</p>
+            <p>Este detalle es solo una pequeña muestra de lo especial que eres para mí.</p>
+            <div class="signature">🐜 ❦ ❤️</div>
         </div>
     </div>
 
@@ -177,17 +178,10 @@
         // Función para mover el botón "NO"
         function moveButton() {
             const btn = document.getElementById('noBtn');
-            const container = document.querySelector('.btn-container');
-            
-            // Calcular nuevas posiciones dentro del área visible
-            const maxX = window.innerWidth - btn.offsetWidth - 40; // Dejar margen
+            const maxX = window.innerWidth - btn.offsetWidth - 40;
             const maxY = window.innerHeight - btn.offsetHeight - 40;
-
-            // Asegurarse de que no se salga de la pantalla por arriba o izquierda
             const newX = Math.max(20, Math.random() * maxX);
             const newY = Math.max(20, Math.random() * maxY);
-
-            // Aplicar la nueva posición de forma fija en la pantalla
             btn.style.position = 'fixed';
             btn.style.left = newX + 'px';
             btn.style.top = newY + 'px';
@@ -197,22 +191,29 @@
         function nextScreen() {
             document.getElementById('screen1').style.display = 'none';
             document.getElementById('screen2').style.display = 'flex';
-            
-            // Cambiar el color de fondo y lanzar confeti
-            document.body.style.backgroundColor = "#ffdde1";
-            launchConfetti();
+            // Cambiar fondo a uno más cálido para celebrar
+            document.body.style.background = "linear-gradient(to bottom, #fff0e6, #ffd1d6)";
+            launchElegantConfetti();
         }
 
-        // Función para lanzar confeti
-        function launchConfetti() {
-            const colors = ['#ff6b81', '#ff4757', '#ffa502', '#2ed573', '#1e90ff'];
-            for (let i = 0; i < 100; i++) {
+        // Función de confeti con colores elegantes
+        function launchElegantConfetti() {
+            // Colores: Dorado, Vino tinto, Crema, Rosa viejo
+            const colors = ['#d4af37', '#8b0000', '#fffcf8', '#c08081'];
+            for (let i = 0; i < 120; i++) {
                 const confetti = document.createElement('div');
                 confetti.classList.add('confetti');
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.left = Math.random() * 100 + 'vw';
                 confetti.style.top = -10 + 'px';
-                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                // Variar tamaño para más elegancia
+                const size = Math.random() * 10 + 5 + 'px';
+                confetti.style.width = size;
+                confetti.style.height = size;
+                // A veces redondos, a veces cuadrados
+                if (Math.random() > 0.5) confetti.style.borderRadius = '50%';
+                
+                confetti.style.animationDuration = Math.random() * 4 + 3 + 's';
                 confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
                 document.body.appendChild(confetti);
             }
